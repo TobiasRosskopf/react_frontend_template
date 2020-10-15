@@ -1,58 +1,87 @@
 {
-    "name": "react_frontend_template",
-    "version": "0.1.0",
-    "private": true,
-    "dependencies": {
-        "@testing-library/jest-dom": "^4.2.4",
-        "@testing-library/react": "^9.5.0",
-        "@testing-library/user-event": "^7.2.1",
-        "@types/jest": "^24.9.1",
-        "@types/node": "^12.12.67",
-        "@types/react": "^16.9.51",
-        "@types/react-dom": "^16.9.8",
-        "@types/react-router-dom": "^5.1.6",
-        "@types/reactstrap": "^8.5.1",
-        "bootstrap": "^4.5.2",
-        "node-sass": "^4.14.1",
-        "react": "^16.13.1",
-        "react-dom": "^16.13.1",
-        "react-router-dom": "^5.2.0",
-        "react-scripts": "3.4.3",
-        "reactstrap": "^8.6.0",
-        "typescript": "^3.7.5"
-    },
-    "scripts": {
-        "start": "react-scripts start",
-        "build": "react-scripts build",
-        "test": "react-scripts test --coverage",
-        "eject": "react-scripts eject"
-    },
-    "eslintConfig": {
-        "extends": "react-app"
-    },
-    "jest": {
-        "collectCoverageFrom": [
-            "**/*.{js,jsx,ts,tsx}",
-            "!**/node_modules/**",
-            "!src/index.tsx",
-            "!src/serviceWorker.ts",
-            "!src/react-app-env.d.ts"
-        ],
-        "coverageReporters": [
-            "text",
-            "lcov"
-        ]
-    },
-    "browserslist": {
-        "production": [
-            ">0.2%",
-            "not dead",
-            "not op_mini all"
-        ],
-        "development": [
-            "last 1 chrome version",
-            "last 1 firefox version",
-            "last 1 safari version"
-        ]
-    }
+  "name": "react_frontend_template",
+  "description": "A template for react frontend projects.",
+  "version": "0.1.0",
+  "license": "MIT",
+  "private": true,
+  "keywords": [
+    "frontend",
+    "react"
+  ],
+  "author": {
+    "name": "Tobias Rosskopf",
+    "email": "tobias.rosskopf@icloud.com",
+    "url": "https://www.rosskopf.xyz"
+  },
+  "contributors": [
+    ""
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/TobiasRosskopf/react_frontend_template.git"
+  },
+  "homepage": "https://github.com/TobiasRosskopf/react_frontend_template/blob/master/README.md",
+  "bugs": "https://github.com/TobiasRosskopf/react_frontend_template/issues",
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --coverage",
+    "eject": "react-scripts eject",
+    "lint": "tsc --noEmit && eslint src/**/*.ts{,x}",
+    "format": "prettier --write src/**/*.ts{,x}"
+  },
+  "dependencies": {
+    "@testing-library/jest-dom": "^4.2.4",
+    "@testing-library/react": "^9.5.0",
+    "@testing-library/user-event": "^7.2.1",
+    "@types/jest": "^24.9.1",
+    "@types/node": "^12.12.67",
+    "@types/react": "^16.9.51",
+    "@types/react-dom": "^16.9.8",
+    "@types/react-router-dom": "^5.1.6",
+    "@types/reactstrap": "^8.5.1",
+    "@typescript-eslint/eslint-plugin": "^4.4.1",
+    "@typescript-eslint/parser": "^4.4.1",
+    "bootstrap": "^4.5.2",
+    "eslint-config-prettier": "^6.12.0",
+    "eslint-plugin-jest": "^24.1.0",
+    "eslint-plugin-prettier": "^3.1.4",
+    "node-sass": "^4.14.1",
+    "prettier": "^2.1.2",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-router-dom": "^5.2.0",
+    "react-scripts": "3.4.3",
+    "reactstrap": "^8.6.0",
+    "typescript": "^3.7.5"
+  },
+  "engines": {
+    "node": ">= 6.0.0",
+    "npm": ">= 3.0.0"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "jest": {
+    "collectCoverageFrom": [
+      "**/*.{js,jsx,ts,tsx}",
+      "!**/node_modules/**",
+      "!src/index.tsx",
+      "!src/serviceWorker.ts",
+      "!src/react-app-env.d.ts"
+    ],
+    "coverageReporters": [
+      "text",
+      "lcov"
+    ]
+  }
 }
