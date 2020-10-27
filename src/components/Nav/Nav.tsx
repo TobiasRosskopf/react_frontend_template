@@ -2,34 +2,37 @@
 import React from "react";
 
 // Import styles
-import "./Nac.scss";
+import "./Nav.scss";
 
-type NavProps = {
-  logged_in: boolean;
-  display_form: (form: string) => void;
-  handle_logout: (event: React.MouseEvent<HTMLLIElement>) => void;
-};
+interface Props {
+  loggedIn: boolean;
+  displayForm: (form: string) => void;
+  handleLogout: (event: React.MouseEvent<HTMLLIElement>) => void;
+}
 
-class Nav extends React.Component<NavProps> {
-  constructor(props: NavProps) {
+interface State {}
+
+class Nav extends React.Component<Props, State> {
+  constructor(props: Props) {
     super(props);
+    this.state = {};
   }
 
   render(): JSX.Element {
-    const logged_out_nav = (
+    const loggedOutNav = (
       <ul>
-        <li onClick={() => this.props.display_form("login")}>login</li>
-        <li onClick={() => this.props.display_form("signup")}>signup</li>
+        <li onClick={(): void => this.props.displayForm("login")}>Anmelden</li>
+        <li onClick={(): void => this.props.displayForm("signup")}>Registrieren</li>
       </ul>
     );
 
-    const logged_in_nav = (
+    const loggedInNav = (
       <ul>
-        <li onClick={this.props.handle_logout}>logout</li>
+        <li onClick={this.props.handleLogout}>logout</li>
       </ul>
     );
 
-    return <div>{this.props.logged_in ? logged_in_nav : logged_out_nav}</div>;
+    return <div>{this.props.loggedIn ? loggedInNav : loggedOutNav}</div>;
   }
 }
 

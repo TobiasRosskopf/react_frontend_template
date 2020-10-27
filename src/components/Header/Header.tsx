@@ -5,7 +5,7 @@ import React from "react";
 import "./Header.scss";
 
 // Import components
-import { Jumbotron } from "reactstrap";
+import Jumbotron from "react-bootstrap/Jumbotron";
 
 class Header extends React.Component {
   render(): JSX.Element {
