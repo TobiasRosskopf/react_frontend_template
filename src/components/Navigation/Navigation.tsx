@@ -14,6 +14,7 @@ import Button from "react-bootstrap/Button";
 
 interface Props {
   loggedIn: boolean;
+  username: string;
   displayForm: (form: string) => void;
   handleLogout: (event: React.MouseEvent<HTMLLIElement>) => void;
 }
@@ -35,7 +36,10 @@ class Navigation extends React.Component<Props, State> {
     );
 
     const loggedInNav = (
-      <Button onClick={this.props.handleLogout}>Abmelden</Button>
+      <div>
+        <Navbar.Brand href="home">{this.props.username}</Navbar.Brand>
+        <Button onClick={this.props.handleLogout}>Abmelden</Button>
+      </div>
     );
 
     return (

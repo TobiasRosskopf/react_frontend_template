@@ -4,6 +4,10 @@ import React from "react";
 // Import styles
 import "./LoginForm.scss";
 
+// Import components
+import Form from "react-bootstrap/Form";
+import Button from "react-bootstrap/Button";
+
 interface Props {
   handleLogin: (event: React.FormEvent<HTMLFormElement>, state: State) => void;
 }
@@ -31,24 +35,33 @@ class LoginForm extends React.Component<Props, State> {
 
   render(): JSX.Element {
     return (
-      <form onSubmit={(e): void => this.props.handleLogin(e, this.state)}>
+      <Form onSubmit={(e): void => this.props.handleLogin(e, this.state)}>
         <h4>Anmelden</h4>
-        <label htmlFor="username">Benutzername</label>
-        <input
-          type="text"
-          name="username"
-          value={this.state.username}
-          onChange={this.handleChange}
-        />
-        <label htmlFor="password">Passwort</label>
-        <input
-          type="password"
-          name="password"
-          value={this.state.password}
-          onChange={this.handleChange}
-        />
-        <input type="submit" />
-      </form>
+
+        <Form.Group controlId="formBasicEmail">
+          <Form.Label htmlFor="username">Benutzername:</Form.Label>
+          <Form.Control
+            type="text"
+            name="username"
+            value={this.state.username}
+            onChange={this.handleChange}
+          />
+        </Form.Group>
+
+        <Form.Group controlId="formBasicPassword">
+          <Form.Label htmlFor="password">Passwort:</Form.Label>
+          <Form.Control
+            type="password"
+            name="password"
+            value={this.state.password}
+            onChange={this.handleChange}
+          />
+        </Form.Group>
+
+        <Button variant="primary" type="submit">
+          Anmelden
+        </Button>
+      </Form>
     );
   }
 }

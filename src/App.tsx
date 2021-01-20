@@ -128,6 +128,7 @@ class App extends React.Component<Props, State> {
       <BrowserRouter basename="/">
         <Navigation
           loggedIn={this.state.loggedIn}
+          username={this.state.username}
           displayForm={this.displayForm}
           handleLogout={this.handleLogout}
         />
