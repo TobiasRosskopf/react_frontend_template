@@ -6,7 +6,12 @@ import "./Error.scss";
 
 class Error extends React.Component {
   render(): JSX.Element {
-    return <h1>Error</h1>;
+    return (
+      <div>
+        <h1>Error</h1>
+        <p>Diese Seite existiert nicht!</p>
+      </div>
+    );
   }
 }
 

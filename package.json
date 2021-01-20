@@ -26,7 +26,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "serve": "npx serve -s build",
-    "test": "react-scripts test --coverage",
+    "test": "react-scripts test --watchAll --coverage",
     "eject": "react-scripts eject",
     "lint": "tsc --noEmit && eslint src/**/*.ts{,x}",
     "format": "prettier --write src/**/*.ts{,x}"

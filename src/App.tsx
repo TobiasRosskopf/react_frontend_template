@@ -17,7 +17,7 @@ import SignupForm from "./components/SignupForm";
 
 // Import parts
 import Header from "./components/Header";
-import Nav from "./components/Nav";
+import Navigation from "./components/Navigation";
 import Footer from "./components/Footer";
 
 // Import pages
@@ -125,15 +125,15 @@ class App extends React.Component<Props, State> {
     }
 
     return (
-      <Container style={{ marginTop: "20px" }}>
-        <BrowserRouter basename="/">
-          <Header />
+      <BrowserRouter basename="/">
+        <Navigation
+          loggedIn={this.state.loggedIn}
+          displayForm={this.displayForm}
+          handleLogout={this.handleLogout}
+        />
 
-          <Nav
-            loggedIn={this.state.loggedIn}
-            displayForm={this.displayForm}
-            handleLogout={this.handleLogout}
-          />
+        <Container style={{ marginTop: "20px" }}>
+          <Header />
           {form}
           <h3>
             {this.state.loggedIn
@@ -146,9 +146,10 @@ class App extends React.Component<Props, State> {
             <Route path="/home" component={Home} />
             <Route component={Error} />
           </Switch>
-          <Footer />
-        </BrowserRouter>
-      </Container>
+        </Container>
+
+        <Footer />
+      </BrowserRouter>
     );
   }
 }
