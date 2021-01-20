@@ -1,12 +1,11 @@
 // Import modules
 import React from "react";
-import { render } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 
 // Import components
 import Footer from "./Footer";
 
 test("renders Copyright", () => {
-  const { getByText } = render(<Footer />);
-  const element = getByText(/Copyright/i);
-  expect(element).toBeInTheDocument();
+  render(<Footer />);
+  expect(screen.getByText(/Copyright/i)).toBeInTheDocument();
 });
