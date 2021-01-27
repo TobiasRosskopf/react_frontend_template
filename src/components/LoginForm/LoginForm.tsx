@@ -39,7 +39,7 @@ class LoginForm extends React.Component<Props, State> {
         <h4>Anmelden</h4>
 
         <Form.Group controlId="formBasicEmail">
-          <Form.Label htmlFor="username">Benutzername:</Form.Label>
+          <Form.Label>Benutzername:</Form.Label>
           <Form.Control
             type="text"
             name="username"
@@ -49,7 +49,7 @@ class LoginForm extends React.Component<Props, State> {
         </Form.Group>
 
         <Form.Group controlId="formBasicPassword">
-          <Form.Label htmlFor="password">Passwort:</Form.Label>
+          <Form.Label>Passwort:</Form.Label>
           <Form.Control
             type="password"
             name="password"

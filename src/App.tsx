@@ -16,7 +16,6 @@ import LoginForm from "./components/LoginForm";
 import SignupForm from "./components/SignupForm";
 
 // Import parts
-import Header from "./components/Header";
 import Navigation from "./components/Navigation";
 import Footer from "./components/Footer";
 
@@ -32,11 +31,17 @@ interface State {
   username: string;
 }
 
+interface Data {
+  username: string;
+  password: string;
+  passwordConfirm: string;
+}
+
 class App extends React.Component<Props, State> {
   constructor(props: Props) {
     super(props);
     this.state = {
-      displayedForm: "",
+      displayedForm: "login",
       loggedIn: localStorage.getItem("token") ? true : false,
       username: "",
     };
@@ -77,7 +82,11 @@ class App extends React.Component<Props, State> {
       });
   };
 
-  handleSignup = (e: React.FormEvent<HTMLFormElement>, data: {}): void => {
+  handleSignup = (e: React.FormEvent<HTMLFormElement>, data: Data): void => {
+    if (data.password !== data.passwordConfirm) {
+      alert("Passwörter stimmen nicht überein!");
+      return;
+    }
     e.preventDefault();
     fetch(URL_USERS, {
       method: "POST",
@@ -133,14 +142,9 @@ class App extends React.Component<Props, State> {
           handleLogout={this.handleLogout}
         />
 
-        <Container style={{ marginTop: "20px" }}>
-          <Header />
-          {form}
-          <h3>
-            {this.state.loggedIn
-              ? `Hallo, ${this.state.username}`
-              : "Bitte anmelden"}
-          </h3>
+        <Container>
+          {/* {form} */}
+          {this.state.loggedIn ? `Hallo, ${this.state.username}` : form}
 
           <Switch>
             <Route path="/" component={Home} exact />
