@@ -5,8 +5,8 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 // Import styles
 import "./App.scss";
 
-// Import configs
-import { URL_AUTH, URL_USER, URL_USERS } from "./config/urlpatterns";
+// Import API
+import API from "./api";
 
 // Import bootstrap components
 import Container from "react-bootstrap/Container";
@@ -49,68 +49,61 @@ class App extends React.Component<Props, State> {
 
   componentDidMount(): void {
     if (this.state.loggedIn) {
-      fetch(URL_USER, {
-        headers: {
-          Authorization: `JWT ${localStorage.getItem("token")}`,
-        },
-      })
-        .then((res) => res.json())
-        .then((json) => {
-          this.setState({ username: json.username });
+      API.get("/api/current_user/")
+        .then((res) => {
+          const { username } = res.data;
+          this.setState({ username });
+        })
+        .catch((err) => {
+          alert(err);
         });
     }
   }
 
   handleLogin = (e: React.FormEvent<HTMLFormElement>, data: {}): void => {
     e.preventDefault();
-    fetch(URL_AUTH, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    })
-      .then((res) => res.json())
-      .then((json) => {
-        console.log(json);
-        localStorage.setItem("token", json.token);
+    API.post("/token-auth/", data)
+      .then((res) => {
+        localStorage.setItem("token", res.data.token);
+        localStorage.setItem("user", res.data.user.username);
         this.setState({
           loggedIn: true,
           displayedForm: "",
-          username: json.user.username,
+          username: res.data.user.username,
         });
+      })
+      .catch((err) => {
+        alert(err);
       });
   };
 
   handleSignup = (e: React.FormEvent<HTMLFormElement>, data: Data): void => {
+    e.preventDefault();
     if (data.password !== data.passwordConfirm) {
       alert("Passwörter stimmen nicht überein!");
-      return;
-    }
-    e.preventDefault();
-    fetch(URL_USERS, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    })
-      .then((res) => res.json())
-      .then((json) => {
-        localStorage.setItem("token", json.token);
-        this.setState({
-          loggedIn: true,
-          displayedForm: "",
-          username: json.username,
+    } else {
+      API.post("/api/users/", data)
+        .then((res) => {
+          localStorage.setItem("token", res.data.token);
+          localStorage.setItem("user", res.data.username);
+          this.setState({
+            loggedIn: true,
+            displayedForm: "",
+            username: res.data.username,
+          });
+        })
+        .catch((err) => {
+          alert(err);
         });
-      });
+    }
   };
 
   handleLogout = (): void => {
-    localStorage.removeItem("token");
+    localStorage.clear();
     this.setState({
       loggedIn: false,
       username: "",
+      displayedForm: "login",
     });
   };
 
@@ -133,6 +126,14 @@ class App extends React.Component<Props, State> {
         form = null;
     }
 
+    const routeSwitch = (
+      <Switch>
+        <Route path="/" component={Home} exact />
+        <Route path="/home" component={Home} />
+        <Route component={Error} />
+      </Switch>
+    );
+
     return (
       <BrowserRouter basename="/">
         <Navigation
@@ -142,15 +143,8 @@ class App extends React.Component<Props, State> {
           handleLogout={this.handleLogout}
         />
 
-        <Container>
-          {/* {form} */}
-          {this.state.loggedIn ? `Hallo, ${this.state.username}` : form}
-
-          <Switch>
-            <Route path="/" component={Home} exact />
-            <Route path="/home" component={Home} />
-            <Route component={Error} />
-          </Switch>
+        <Container className="mt-5 mb-5">
+          {this.state.loggedIn ? routeSwitch : form}
         </Container>
 
         <Footer />

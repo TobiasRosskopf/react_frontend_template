@@ -4,9 +4,6 @@ import React from "react";
 // Import styles
 import "./Navigation.scss";
 
-// Import configs
-import { URL_ADMIN } from "../../config/urlpatterns";
-
 // Import components
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
@@ -30,8 +27,12 @@ class Navigation extends React.Component<Props, State> {
   render(): JSX.Element {
     const loggedOutNav = (
       <div>
-        <Button onClick={(): void => this.props.displayForm("login")}>Anmelden</Button>
-        <Button onClick={(): void => this.props.displayForm("signup")}>Registrieren</Button>
+        <Button onClick={(): void => this.props.displayForm("login")}>
+          Anmelden
+        </Button>
+        <Button onClick={(): void => this.props.displayForm("signup")}>
+          Registrieren
+        </Button>
       </div>
     );
 
@@ -49,7 +50,7 @@ class Navigation extends React.Component<Props, State> {
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="mr-auto">
             <Nav.Link href="home">Home</Nav.Link>
-            <Nav.Link href={URL_ADMIN}>Admin</Nav.Link>
+            <Nav.Link href="http://0.0.0.0:8000/admin/">Admin</Nav.Link>
           </Nav>
           {this.props.loggedIn ? loggedInNav : loggedOutNav}
         </Navbar.Collapse>

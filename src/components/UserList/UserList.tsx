@@ -7,6 +7,9 @@ import "./UserList.scss";
 // Import API
 import API from "../../api";
 
+// Import components
+import Table from "react-bootstrap/Table";
+
 interface Props {}
 
 interface User {
@@ -27,7 +30,7 @@ class UserList extends React.Component<{}, State> {
   }
 
   componentDidMount(): void {
-    API.get("/users")
+    API.get("/api/users/")
       .then((res) => {
         const users = res.data;
         this.setState({ users });
@@ -38,15 +41,23 @@ class UserList extends React.Component<{}, State> {
   }
 
   render(): JSX.Element {
-    console.log(this.state.users);
     return (
-      <ul>
-        {this.state.users.map((user) => (
-          <li key={user.username}>
-            {user.username} - {user.email}
-          </li>
-        ))}
-      </ul>
+      <Table striped bordered hover>
+        <thead>
+          <tr>
+            <th>Username</th>
+            <th>E-Mail</th>
+          </tr>
+        </thead>
+        <tbody>
+          {this.state.users.map((user) => (
+            <tr>
+              <td>{user.username}</td>
+              <td>{user.email}</td>
+            </tr>
+          ))}
+        </tbody>
+      </Table>
     );
   }
 }

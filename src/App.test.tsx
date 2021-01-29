@@ -5,8 +5,8 @@ import { render } from "@testing-library/react";
 // Import components
 import App from "./App";
 
-test("renders App with React", () => {
+test("renders 'React App'", () => {
   const { getByText } = render(<App />);
-  const element = getByText(/App with React/i);
+  const element = getByText(/React App/i);
   expect(element).toBeInTheDocument();
 });
