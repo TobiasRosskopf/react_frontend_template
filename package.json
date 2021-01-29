@@ -27,7 +27,6 @@
     "build": "react-scripts build",
     "serve": "npx serve -s build",
     "test": "react-scripts test --watchAll --coverage",
-    "eject": "react-scripts eject",
     "lint": "tsc --noEmit && eslint src/**/*.ts{,x}",
     "format": "prettier --write src/**/*.ts{,x}"
   },
@@ -43,6 +42,7 @@
     "@types/reactstrap": "^8.5.1",
     "@typescript-eslint/eslint-plugin": "^2.34.0",
     "@typescript-eslint/parser": "^2.34.0",
+    "axios": "^0.21.1",
     "bootstrap": "^4.5.3",
     "eslint-config-prettier": "^6.12.0",
     "eslint-plugin-jest": "^24.1.0",

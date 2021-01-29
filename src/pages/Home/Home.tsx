@@ -6,6 +6,7 @@ import "./Home.scss";
 
 // Import parts
 import Header from "../../components/Header";
+import UserList from "../../components/UserList";
 
 class Home extends React.Component {
   render(): JSX.Element {
@@ -13,6 +14,7 @@ class Home extends React.Component {
       <div>
         <Header />
         <h1>Home</h1>
+        <UserList />
       </div>
     );
   }
