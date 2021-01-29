@@ -51,7 +51,7 @@ class UserList extends React.Component<{}, State> {
         </thead>
         <tbody>
           {this.state.users.map((user) => (
-            <tr>
+            <tr key={user.username}>
               <td>{user.username}</td>
               <td>{user.email}</td>
             </tr>

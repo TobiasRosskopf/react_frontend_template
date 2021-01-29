@@ -2,7 +2,7 @@
 import React from "react";
 import { render } from "@testing-library/react";
 
-// Import components
+// Import page
 import Error from "./Error";
 
 test("renders Error", () => {

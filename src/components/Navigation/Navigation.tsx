@@ -38,7 +38,7 @@ class Navigation extends React.Component<Props, State> {
 
     const loggedInNav = (
       <div>
-        <Navbar.Brand href="home">{this.props.username}</Navbar.Brand>
+        <Navbar.Brand href="user">{this.props.username}</Navbar.Brand>
         <Button onClick={this.props.handleLogout}>Abmelden</Button>
       </div>
     );

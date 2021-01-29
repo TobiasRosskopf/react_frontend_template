@@ -3,10 +3,10 @@ import React from "react";
 import { render } from "@testing-library/react";
 
 // Import page
-import Home from "./Home";
+import User from "./User";
 
-test("renders Home", () => {
-  const { getByText } = render(<Home />);
-  const element = getByText(/Home/i);
+test("renders User", () => {
+  const { getByText } = render(<User />);
+  const element = getByText(/User/i);
   expect(element).toBeInTheDocument();
 });

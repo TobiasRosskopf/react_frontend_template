@@ -21,6 +21,7 @@ import Footer from "./components/Footer";
 
 // Import pages
 import Home from "./pages/Home";
+import User from "./pages/User";
 import Error from "./pages/Error";
 
 interface Props {}
@@ -130,6 +131,7 @@ class App extends React.Component<Props, State> {
       <Switch>
         <Route path="/" component={Home} exact />
         <Route path="/home" component={Home} />
+        <Route path="/user" component={User} />
         <Route component={Error} />
       </Switch>
     );
