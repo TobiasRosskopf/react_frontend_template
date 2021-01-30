@@ -50,7 +50,7 @@ class App extends React.Component<Props, State> {
 
   componentDidMount(): void {
     if (this.state.loggedIn) {
-      API.get("/api/current_user/")
+      API.get("/current_user/")
         .then((res) => this.setState({ username: res.data.username }))
         .catch((err) => alert(err));
     }
@@ -58,7 +58,7 @@ class App extends React.Component<Props, State> {
 
   handleLogin = (e: React.FormEvent<HTMLFormElement>, data: {}): void => {
     e.preventDefault();
-    API.post("/token-auth/", data)
+    API.post("/login/", data)
       .then((res) => {
         localStorage.setItem("token", res.data.token);
         localStorage.setItem("username", res.data.user.username);
@@ -76,7 +76,7 @@ class App extends React.Component<Props, State> {
     if (data.password !== data.passwordConfirm) {
       alert("Passwörter stimmen nicht überein!");
     } else {
-      API.post("/api/users/", data)
+      API.post("/users/", data)
         .then((res) => {
           localStorage.setItem("token", res.data.token);
           localStorage.setItem("username", res.data.username);
