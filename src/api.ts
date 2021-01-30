@@ -3,9 +3,9 @@ import axios from "axios";
 
 // Helper fuction for authorization header
 function authHeader(): {} {
-  const user = localStorage.getItem("user");
+  const username = localStorage.getItem("username");
   const token = localStorage.getItem("token");
-  if (user && token) {
+  if (username && token) {
     return { Authorization: `JWT ${token}` };
   } else {
     return {};

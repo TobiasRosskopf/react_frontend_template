@@ -31,13 +31,8 @@ class UserList extends React.Component<{}, State> {
 
   componentDidMount(): void {
     API.get("/api/users/")
-      .then((res) => {
-        const users = res.data;
-        this.setState({ users });
-      })
-      .catch((err) => {
-        alert(err);
-      });
+      .then((res) => this.setState({ users: res.data }))
+      .catch((err) => alert(err));
   }
 
   render(): JSX.Element {

@@ -51,13 +51,8 @@ class App extends React.Component<Props, State> {
   componentDidMount(): void {
     if (this.state.loggedIn) {
       API.get("/api/current_user/")
-        .then((res) => {
-          const { username } = res.data;
-          this.setState({ username });
-        })
-        .catch((err) => {
-          alert(err);
-        });
+        .then((res) => this.setState({ username: res.data.username }))
+        .catch((err) => alert(err));
     }
   }
 
@@ -66,16 +61,14 @@ class App extends React.Component<Props, State> {
     API.post("/token-auth/", data)
       .then((res) => {
         localStorage.setItem("token", res.data.token);
-        localStorage.setItem("user", res.data.user.username);
+        localStorage.setItem("username", res.data.user.username);
         this.setState({
           loggedIn: true,
           displayedForm: "",
           username: res.data.user.username,
         });
       })
-      .catch((err) => {
-        alert(err);
-      });
+      .catch((err) => alert(err));
   };
 
   handleSignup = (e: React.FormEvent<HTMLFormElement>, data: Data): void => {
@@ -86,16 +79,14 @@ class App extends React.Component<Props, State> {
       API.post("/api/users/", data)
         .then((res) => {
           localStorage.setItem("token", res.data.token);
-          localStorage.setItem("user", res.data.username);
+          localStorage.setItem("username", res.data.username);
           this.setState({
             loggedIn: true,
             displayedForm: "",
             username: res.data.username,
           });
         })
-        .catch((err) => {
-          alert(err);
-        });
+        .catch((err) => alert(err));
     }
   };
 
@@ -140,7 +131,6 @@ class App extends React.Component<Props, State> {
       <BrowserRouter basename="/">
         <Navigation
           loggedIn={this.state.loggedIn}
-          username={this.state.username}
           displayForm={this.displayForm}
           handleLogout={this.handleLogout}
         />

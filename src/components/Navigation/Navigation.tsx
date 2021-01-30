@@ -11,7 +11,6 @@ import Button from "react-bootstrap/Button";
 
 interface Props {
   loggedIn: boolean;
-  username: string;
   displayForm: (form: string) => void;
   handleLogout: (event: React.MouseEvent<HTMLLIElement>) => void;
 }
@@ -27,10 +26,10 @@ class Navigation extends React.Component<Props, State> {
   render(): JSX.Element {
     const loggedOutNav = (
       <div>
-        <Button onClick={(): void => this.props.displayForm("login")}>
+        <Button size="sm" onClick={(): void => this.props.displayForm("login")}>
           Anmelden
         </Button>
-        <Button onClick={(): void => this.props.displayForm("signup")}>
+        <Button size="sm" onClick={(): void => this.props.displayForm("signup")}>
           Registrieren
         </Button>
       </div>
@@ -38,8 +37,10 @@ class Navigation extends React.Component<Props, State> {
 
     const loggedInNav = (
       <div>
-        <Navbar.Brand href="user">{this.props.username}</Navbar.Brand>
-        <Button onClick={this.props.handleLogout}>Abmelden</Button>
+        <a href="user">{localStorage.getItem("username")}</a>
+        <Button className="ml-3" size="sm" onClick={this.props.handleLogout}>
+          Abmelden
+        </Button>
       </div>
     );
 
