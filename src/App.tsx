@@ -24,8 +24,6 @@ import Home from "./pages/Home";
 import User from "./pages/User";
 import Error from "./pages/Error";
 
-interface Props {}
-
 interface State {
   displayedForm: string;
   loggedIn: boolean;
@@ -38,8 +36,8 @@ interface Data {
   passwordConfirm: string;
 }
 
-class App extends React.Component<Props, State> {
-  constructor(props: Props) {
+class App extends React.Component<{}, State> {
+  constructor(props: {}) {
     super(props);
     this.state = {
       displayedForm: "login",
@@ -135,9 +133,7 @@ class App extends React.Component<Props, State> {
           handleLogout={this.handleLogout}
         />
 
-        <Container className="mt-5 mb-5">
-          {this.state.loggedIn ? routeSwitch : form}
-        </Container>
+        <Container className="mt-5 mb-5">{this.state.loggedIn ? routeSwitch : form}</Container>
 
         <Footer />
       </BrowserRouter>

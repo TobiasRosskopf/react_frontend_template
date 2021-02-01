@@ -10,8 +10,6 @@ import API from "../../api";
 // Import components
 import Table from "react-bootstrap/Table";
 
-interface Props {}
-
 interface User {
   username: string;
   email: string;
@@ -22,7 +20,7 @@ interface State {
 }
 
 class UserList extends React.Component<{}, State> {
-  constructor(props: Props) {
+  constructor(props: {}) {
     super(props);
     this.state = {
       users: [],

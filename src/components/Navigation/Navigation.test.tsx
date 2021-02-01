@@ -6,6 +6,23 @@ import { render, screen } from "@testing-library/react";
 import Navigation from "./Navigation";
 
 test("renders Anmelden", () => {
-  render(<Navigation />);
+  render(
+    <Navigation
+      loggedIn={false}
+      displayForm={(): string => "login"}
+      handleLogout={(): boolean => false}
+    />
+  );
   expect(screen.getByText(/Anmelden/i)).toBeInTheDocument();
+});
+
+test("renders Abmelden", () => {
+  render(
+    <Navigation
+      loggedIn={true}
+      displayForm={(): string => "login"}
+      handleLogout={(): boolean => false}
+    />
+  );
+  expect(screen.getByText(/Abmelden/i)).toBeInTheDocument();
 });

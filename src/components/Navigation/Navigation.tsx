@@ -15,9 +15,7 @@ interface Props {
   handleLogout: (event: React.MouseEvent<HTMLLIElement>) => void;
 }
 
-interface State {}
-
-class Navigation extends React.Component<Props, State> {
+class Navigation extends React.Component<Props, {}> {
   constructor(props: Props) {
     super(props);
     this.state = {};

@@ -84,6 +84,8 @@ https://www.npmjs.com/package/@typescript-eslint/eslint-plugin
 
 https://prettier.io/docs/en/index.html
 
+https://prettier.io/docs/en/options.html
+
 ### GitHub Actions (CI/CD)
 
 https://docs.github.com/en/actions
