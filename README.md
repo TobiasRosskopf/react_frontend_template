@@ -98,8 +98,6 @@ https://medium.com/@brygrill/create-react-app-with-typescript-eslint-prettier-an
 
 https://medium.com/@bretcameron/a-quick-guide-to-react-with-typescript-313fccd9ad89
 
-https://medium.com/@brygrill/create-react-app-with-typescript-eslint-prettier-and-github-actions-f3ce6a571c97
-
 https://bezkoder.com/react-redux-jwt-auth/
 
 https://www.digitalocean.com/community/tutorials/react-axios-react-de
