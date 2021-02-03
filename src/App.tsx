@@ -74,7 +74,7 @@ class App extends React.Component<{}, State> {
     if (data.password !== data.passwordConfirm) {
       alert("Passwörter stimmen nicht überein!");
     } else {
-      API.post("/users/", data)
+      API.post("/signup/", data)
         .then((res) => {
           localStorage.setItem("token", res.data.token);
           localStorage.setItem("username", res.data.username);

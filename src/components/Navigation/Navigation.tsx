@@ -8,6 +8,8 @@ import "./Navigation.scss";
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
 import Button from "react-bootstrap/Button";
+import Dropdown from "react-bootstrap/Dropdown";
+import DropdownButton from "react-bootstrap/DropdownButton";
 
 interface Props {
   loggedIn: boolean;
@@ -24,10 +26,10 @@ class Navigation extends React.Component<Props, {}> {
   render(): JSX.Element {
     const loggedOutNav = (
       <div>
-        <Button size="sm" onClick={(): void => this.props.displayForm("login")}>
+        <Button variant="link" onClick={(): void => this.props.displayForm("login")}>
           Anmelden
         </Button>
-        <Button size="sm" onClick={(): void => this.props.displayForm("signup")}>
+        <Button variant="link" onClick={(): void => this.props.displayForm("signup")}>
           Registrieren
         </Button>
       </div>
@@ -35,10 +37,17 @@ class Navigation extends React.Component<Props, {}> {
 
     const loggedInNav = (
       <div>
-        <a href="user">{localStorage.getItem("username")}</a>
-        <Button className="ml-3" size="sm" onClick={this.props.handleLogout}>
-          Abmelden
-        </Button>
+        <DropdownButton
+          id="dropdown-basic-button"
+          title={"Angemeldet als " + localStorage.getItem("username")}
+          size="sm"
+          menuAlign="right"
+        >
+          <Dropdown.Item href="user">Profil</Dropdown.Item>
+          <Dropdown.Item href="user">Profil</Dropdown.Item>
+          <Dropdown.Divider />
+          <Dropdown.Item onClick={this.props.handleLogout}>Abmelden</Dropdown.Item>
+        </DropdownButton>
       </div>
     );
 

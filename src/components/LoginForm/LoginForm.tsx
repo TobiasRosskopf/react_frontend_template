@@ -36,7 +36,7 @@ class LoginForm extends React.Component<Props, State> {
   render(): JSX.Element {
     return (
       <Form onSubmit={(e): void => this.props.handleLogin(e, this.state)}>
-        <h4>Anmelden</h4>
+        <h1>Anmelden</h1>
 
         <Form.Group controlId="formBasicEmail">
           <Form.Label>Benutzername:</Form.Label>
@@ -58,7 +58,7 @@ class LoginForm extends React.Component<Props, State> {
           />
         </Form.Group>
 
-        <Button variant="primary" type="submit">
+        <Button variant="primary" size="lg" className="mt-3" type="submit">
           Anmelden
         </Button>
       </Form>
