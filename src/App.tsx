@@ -119,7 +119,6 @@ class App extends React.Component<{}, State> {
     const routeSwitch = (
       <Switch>
         <Route path="/" component={Home} exact />
-        <Route path="/home" component={Home} />
         <Route path="/user" component={User} />
         <Route component={Error} />
       </Switch>
