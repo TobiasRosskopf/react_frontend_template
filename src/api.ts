@@ -14,7 +14,7 @@ function authHeader(): {} {
 
 // Create API
 export default axios.create({
-  baseURL: `http://0.0.0.0:8000`,
+  baseURL: "http://0.0.0.0:8000",
   headers: authHeader(),
   timeout: 1000,
 });
