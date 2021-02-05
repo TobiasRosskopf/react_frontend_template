@@ -44,7 +44,7 @@ class Navigation extends React.Component<Props, {}> {
           menuAlign="right"
         >
           <Dropdown.Item href="user">Profil</Dropdown.Item>
-          <Dropdown.Item href="user">Profil</Dropdown.Item>
+          <Dropdown.Item href="settings">Einstellungen</Dropdown.Item>
           <Dropdown.Divider />
           <Dropdown.Item onClick={this.props.handleLogout}>Abmelden</Dropdown.Item>
         </DropdownButton>
