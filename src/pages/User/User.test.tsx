@@ -5,8 +5,8 @@ import { render } from "@testing-library/react";
 // Import page
 import User from "./User";
 
-test("renders User", () => {
+test("renders 'Benutzerprofil'", () => {
   const { getByText } = render(<User />);
-  const element = getByText(/User/i);
+  const element = getByText(/Benutzerprofil/i);
   expect(element).toBeInTheDocument();
 });

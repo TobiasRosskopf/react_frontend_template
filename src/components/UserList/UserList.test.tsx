@@ -5,7 +5,7 @@ import { render, screen } from "@testing-library/react";
 // Import components
 import UserList from "./UserList";
 
-test("renders 'Username'", () => {
+test("renders 'Benutzername'", () => {
   render(<UserList />);
-  expect(screen.getByText(/Username/i)).toBeInTheDocument();
+  expect(screen.getByText(/Benutzername/i)).toBeInTheDocument();
 });

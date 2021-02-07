@@ -5,7 +5,7 @@ import { render, screen } from "@testing-library/react";
 // Import components
 import Navigation from "./Navigation";
 
-test("renders Anmelden", () => {
+test("renders 'Anmelden'", () => {
   render(
     <Navigation
       loggedIn={false}
@@ -16,7 +16,7 @@ test("renders Anmelden", () => {
   expect(screen.getByText(/Anmelden/i)).toBeInTheDocument();
 });
 
-test("renders Abmelden", () => {
+test("renders 'Angemeldet als'", () => {
   render(
     <Navigation
       loggedIn={true}
@@ -24,5 +24,5 @@ test("renders Abmelden", () => {
       handleLogout={(): boolean => false}
     />
   );
-  expect(screen.getByText(/Abmelden/i)).toBeInTheDocument();
+  expect(screen.getByText(/Angemeldet als/i)).toBeInTheDocument();
 });

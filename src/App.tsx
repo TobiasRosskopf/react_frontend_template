@@ -79,7 +79,6 @@ class App extends React.Component<{}, State> {
         .then((res) => {
           localStorage.setItem("token", res.data.token);
           localStorage.setItem("username", res.data.username);
-          localStorage.setItem("email", res.data.user.email);
           this.setState({
             loggedIn: true,
             displayedForm: "",
