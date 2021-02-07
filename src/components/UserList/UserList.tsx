@@ -38,7 +38,7 @@ class UserList extends React.Component<{}, State> {
       <Table striped bordered hover>
         <thead>
           <tr>
-            <th>Username</th>
+            <th>Benutzername</th>
             <th>E-Mail</th>
           </tr>
         </thead>

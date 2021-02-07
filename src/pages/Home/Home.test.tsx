@@ -5,7 +5,7 @@ import { render } from "@testing-library/react";
 // Import page
 import Home from "./Home";
 
-test("renders Home", () => {
+test("renders 'Home'", () => {
   const { getByText } = render(<Home />);
   const element = getByText(/Home/i);
   expect(element).toBeInTheDocument();
