@@ -119,8 +119,8 @@ class App extends React.Component<{}, State> {
 
     const routeSwitch = (
       <Switch>
-        <Route path="/" component={Home} exact />
-        <Route path="/user" component={User} />
+        <Route exact path={["/", "/home"]} component={Home} />
+        <Route exact path={["/user"]} component={User} />
         <Route component={Error} />
       </Switch>
     );
