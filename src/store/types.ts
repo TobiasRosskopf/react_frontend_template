@@ -8,7 +8,7 @@ export interface UserData {
 }
 
 export interface UserError {
-  detail: string;
+  message: string;
 }
 
 export interface UserState {
