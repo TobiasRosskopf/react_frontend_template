@@ -1,9 +1,13 @@
 @import "../../scss/colors.scss";
 
-footer {
-    position: fixed;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    background-color: $primary-color;
+.Footer {
+    // Parent selector: Here exclusive scss for current component
+
+    footer {
+        position: fixed;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        background-color: $primary-color;
+    }
 }

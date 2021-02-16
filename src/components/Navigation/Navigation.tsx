@@ -11,14 +11,14 @@ import Button from "react-bootstrap/Button";
 import Dropdown from "react-bootstrap/Dropdown";
 import DropdownButton from "react-bootstrap/DropdownButton";
 
-interface Props {
+interface NavigationProps {
   loggedIn: boolean;
   displayForm: (form: string) => void;
   handleLogout: (event: React.MouseEvent<HTMLLIElement>) => void;
 }
 
-class Navigation extends React.Component<Props, {}> {
-  constructor(props: Props) {
+class Navigation extends React.Component<NavigationProps, {}> {
+  constructor(props: NavigationProps) {
     super(props);
     this.state = {};
   }
@@ -52,17 +52,19 @@ class Navigation extends React.Component<Props, {}> {
     );
 
     return (
-      <Navbar expand="lg">
-        <Navbar.Brand href="home">React App</Navbar.Brand>
-        <Navbar.Toggle aria-controls="basic-navbar-nav" />
-        <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="mr-auto">
-            <Nav.Link href="/">Home</Nav.Link>
-            <Nav.Link href="http://0.0.0.0:8000/admin/">Admin</Nav.Link>
-          </Nav>
-          {this.props.loggedIn ? loggedInNav : loggedOutNav}
-        </Navbar.Collapse>
-      </Navbar>
+      <div className="Navigation">
+        <Navbar expand="lg">
+          <Navbar.Brand href="home">React App</Navbar.Brand>
+          <Navbar.Toggle aria-controls="basic-navbar-nav" />
+          <Navbar.Collapse id="basic-navbar-nav">
+            <Nav className="mr-auto">
+              <Nav.Link href="/">Home</Nav.Link>
+              <Nav.Link href="http://0.0.0.0:8000/admin/">Admin</Nav.Link>
+            </Nav>
+            {this.props.loggedIn ? loggedInNav : loggedOutNav}
+          </Navbar.Collapse>
+        </Navbar>
+      </div>
     );
   }
 }

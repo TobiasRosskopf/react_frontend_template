@@ -2,12 +2,12 @@
 import React from "react";
 
 // Import styles
-import "./Error.scss";
+import "./ErrorPage.scss";
 
-class Error extends React.Component {
+class ErrorPage extends React.Component {
   render(): JSX.Element {
     return (
-      <div>
+      <div className="ErrorPage">
         <h1>Error</h1>
         <p>Diese Seite existiert nicht!</p>
       </div>
@@ -15,4 +15,4 @@ class Error extends React.Component {
   }
 }
 
-export default Error;
+export default ErrorPage;

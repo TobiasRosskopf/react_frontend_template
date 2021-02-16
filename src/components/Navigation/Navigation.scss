@@ -1,5 +1,9 @@
 @import "../../scss/colors.scss";
 
-nav {
-    background-color: $primary-color;
+.Navigation {
+    // Parent selector: Here exclusive scss for current component
+
+    nav {
+        background-color: $primary-color;
+    }
 }

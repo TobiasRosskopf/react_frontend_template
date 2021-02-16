@@ -20,23 +20,23 @@ import Navigation from "./components/Navigation";
 import Footer from "./components/Footer";
 
 // Import pages
-import Home from "./pages/Home";
-import User from "./pages/User";
-import Error from "./pages/Error";
+import HomePage from "./pages/HomePage";
+import UserPage from "./pages/UserPage";
+import ErrorPage from "./pages/ErrorPage";
 
-interface State {
+interface AppState {
   displayedForm: string;
   loggedIn: boolean;
   username: string;
 }
 
-interface Data {
+interface SignupDataI {
   username: string;
   password: string;
   passwordConfirm: string;
 }
 
-class App extends React.Component<{}, State> {
+class App extends React.Component<{}, AppState> {
   constructor(props: {}) {
     super(props);
     this.state = {
@@ -70,7 +70,7 @@ class App extends React.Component<{}, State> {
       .catch((err) => alert(err));
   };
 
-  handleSignup = (e: React.FormEvent<HTMLFormElement>, data: Data): void => {
+  handleSignup = (e: React.FormEvent<HTMLFormElement>, data: SignupDataI): void => {
     e.preventDefault();
     if (data.password !== data.passwordConfirm) {
       alert("Passwörter stimmen nicht überein!");
@@ -119,24 +119,26 @@ class App extends React.Component<{}, State> {
 
     const routeSwitch = (
       <Switch>
-        <Route exact path={["/", "/home"]} component={Home} />
-        <Route exact path={["/user"]} component={User} />
-        <Route component={Error} />
+        <Route exact path={["/", "/home"]} component={HomePage} />
+        <Route exact path={["/user"]} component={UserPage} />
+        <Route component={ErrorPage} />
       </Switch>
     );
 
     return (
-      <BrowserRouter basename="/">
-        <Navigation
-          loggedIn={this.state.loggedIn}
-          displayForm={this.displayForm}
-          handleLogout={this.handleLogout}
-        />
+      <div className="App">
+        <BrowserRouter basename="/">
+          <Navigation
+            loggedIn={this.state.loggedIn}
+            displayForm={this.displayForm}
+            handleLogout={this.handleLogout}
+          />
 
-        <Container className="mt-5 mb-5">{this.state.loggedIn ? routeSwitch : form}</Container>
+          <Container className="mt-5 mb-5">{this.state.loggedIn ? routeSwitch : form}</Container>
 
-        <Footer />
-      </BrowserRouter>
+          <Footer />
+        </BrowserRouter>
+      </div>
     );
   }
 }

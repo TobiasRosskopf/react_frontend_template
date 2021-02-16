@@ -10,16 +10,16 @@ import API from "../../api";
 // Import components
 import Table from "react-bootstrap/Table";
 
-interface User {
+interface UserI {
   username: string;
   email: string;
 }
 
-interface State {
-  users: User[];
+interface UserListState {
+  users: UserI[];
 }
 
-class UserList extends React.Component<{}, State> {
+class UserList extends React.Component<{}, UserListState> {
   constructor(props: {}) {
     super(props);
     this.state = {
@@ -35,22 +35,24 @@ class UserList extends React.Component<{}, State> {
 
   render(): JSX.Element {
     return (
-      <Table striped bordered hover>
-        <thead>
-          <tr>
-            <th>Benutzername</th>
-            <th>E-Mail</th>
-          </tr>
-        </thead>
-        <tbody>
-          {this.state.users.map((user) => (
-            <tr key={user.username}>
-              <td>{user.username}</td>
-              <td>{user.email}</td>
+      <div className="UserList">
+        <Table striped bordered hover>
+          <thead>
+            <tr>
+              <th>Benutzername</th>
+              <th>E-Mail</th>
             </tr>
-          ))}
-        </tbody>
-      </Table>
+          </thead>
+          <tbody>
+            {this.state.users.map((user) => (
+              <tr key={user.username}>
+                <td>{user.username}</td>
+                <td>{user.email}</td>
+              </tr>
+            ))}
+          </tbody>
+        </Table>
+      </div>
     );
   }
 }

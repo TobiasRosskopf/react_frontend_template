@@ -2,16 +2,16 @@
 import React from "react";
 
 // Import styles
-import "./Home.scss";
+import "./HomePage.scss";
 
 // Import parts
 import Header from "../../components/Header";
 import UserList from "../../components/UserList";
 
-class Home extends React.Component {
+class HomePage extends React.Component {
   render(): JSX.Element {
     return (
-      <div>
+      <div className="HomePage">
         <Header />
         <h1>Home</h1>
         <UserList />
@@ -20,4 +20,4 @@ class Home extends React.Component {
   }
 }
 
-export default Home;
+export default HomePage;

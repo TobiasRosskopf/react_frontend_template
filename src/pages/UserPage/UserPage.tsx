@@ -2,15 +2,15 @@
 import React from "react";
 
 // Import styles
-import "./User.scss";
+import "./UserPage.scss";
 
 // Import parts
 import Header from "../../components/Header";
 
-class User extends React.Component<{}, {}> {
+class UserPage extends React.Component<{}, {}> {
   render(): JSX.Element {
     return (
-      <div>
+      <div className="UserPage">
         <Header />
         <h1>Benutzerprofil:</h1>
         <h2>Benutzername: {localStorage.getItem("username")}</h2>
@@ -20,4 +20,4 @@ class User extends React.Component<{}, {}> {
   }
 }
 
-export default User;
+export default UserPage;
