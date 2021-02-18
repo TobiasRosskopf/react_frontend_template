@@ -59,12 +59,11 @@ class App extends React.Component<{}, AppState> {
     API.post("/login/", data)
       .then((res) => {
         localStorage.setItem("token", res.data.token);
-        localStorage.setItem("username", res.data.user.username);
-        localStorage.setItem("email", res.data.user.email);
+        localStorage.setItem("username", res.data.username);
         this.setState({
           loggedIn: true,
           displayedForm: "",
-          username: res.data.user.username,
+          username: res.data.username,
         });
       })
       .catch((err) => alert(err));

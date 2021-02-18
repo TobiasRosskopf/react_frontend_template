@@ -11,7 +11,10 @@ import API from "../../api";
 import Table from "react-bootstrap/Table";
 
 interface UserI {
+  id: BigInteger;
   username: string;
+  first_name: string;
+  last_name: string;
   email: string;
 }
 
@@ -41,13 +44,17 @@ class UserList extends React.Component<{}, UserListState> {
             <tr>
               <th>Benutzername</th>
               <th>E-Mail</th>
+              <th>Vorname</th>
+              <th>Nachname</th>
             </tr>
           </thead>
           <tbody>
             {this.state.users.map((user) => (
-              <tr key={user.username}>
+              <tr key={user.id.toString()}>
                 <td>{user.username}</td>
                 <td>{user.email}</td>
+                <td>{user.first_name}</td>
+                <td>{user.last_name}</td>
               </tr>
             ))}
           </tbody>

@@ -14,7 +14,6 @@ class UserPage extends React.Component<{}, {}> {
         <Header />
         <h1>Benutzerprofil:</h1>
         <h2>Benutzername: {localStorage.getItem("username")}</h2>
-        <h2>E-Mail: {localStorage.getItem("email")}</h2>
       </div>
     );
   }
