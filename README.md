@@ -1,5 +1,7 @@
 # React Frontend Template
 
+![React Frontend CI](https://github.com/TobiasRosskopf/react_frontend_template/workflows/React%20Frontend%20CI/badge.svg?branch=master)
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
