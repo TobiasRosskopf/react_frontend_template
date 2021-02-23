@@ -41,7 +41,7 @@ class App extends React.Component<{}, AppState> {
     super(props);
     this.state = {
       displayedForm: "login",
-      loggedIn: localStorage.getItem("token") ? true : false,
+      loggedIn: localStorage.getItem("accessToken") ? true : false,
       username: "",
     };
   }
@@ -56,10 +56,10 @@ class App extends React.Component<{}, AppState> {
 
   handleLogin = (e: React.FormEvent<HTMLFormElement>, data: {}): void => {
     e.preventDefault();
-    API.post("/login/", data)
+    API.post("/token/", data)
       .then((res) => {
-        localStorage.setItem("token", res.data.token);
-        localStorage.setItem("username", res.data.username);
+        localStorage.setItem("accessToken", res.data.access);
+        localStorage.setItem("refreshToken", res.data.refresh);
         this.setState({
           loggedIn: true,
           displayedForm: "",
@@ -74,12 +74,10 @@ class App extends React.Component<{}, AppState> {
     if (data.password !== data.passwordConfirm) {
       alert("Passwörter stimmen nicht überein!");
     } else {
-      API.post("/signup/", data)
+      API.post("/register/", data)
         .then((res) => {
-          localStorage.setItem("token", res.data.token);
-          localStorage.setItem("username", res.data.username);
           this.setState({
-            loggedIn: true,
+            loggedIn: false,
             displayedForm: "",
             username: res.data.username,
           });
