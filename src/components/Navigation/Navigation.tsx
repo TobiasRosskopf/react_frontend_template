@@ -1,5 +1,6 @@
 // Import modules
 import React from "react";
+import { connect } from "react-redux";
 
 // Import styles
 import "./Navigation.scss";
@@ -11,14 +12,27 @@ import Button from "react-bootstrap/Button";
 import Dropdown from "react-bootstrap/Dropdown";
 import DropdownButton from "react-bootstrap/DropdownButton";
 
-interface NavigationProps {
+import { RootState } from "../../store/store";
+import { UserState } from "store/types";
+
+interface OwnProps {
   loggedIn: boolean;
   displayForm: (form: string) => void;
   handleLogout: (event: React.MouseEvent<HTMLLIElement>) => void;
 }
 
-class Navigation extends React.Component<NavigationProps, {}> {
-  constructor(props: NavigationProps) {
+function mapStateToProps(state: RootState): { user: UserState } {
+  return {
+    user: state.user,
+  };
+}
+
+const mapDispatchToProps = {};
+
+type Props = ReturnType<typeof mapStateToProps> & typeof mapDispatchToProps & OwnProps;
+
+class Navigation extends React.Component<Props> {
+  constructor(props: Props) {
     super(props);
     this.state = {};
   }
@@ -39,7 +53,7 @@ class Navigation extends React.Component<NavigationProps, {}> {
       <div>
         <DropdownButton
           id="dropdown-basic-button"
-          title={"Angemeldet als " + localStorage.getItem("username")}
+          title={"Angemeldet als " + this.props.user.data?.username}
           size="sm"
           menuAlign="right"
         >
@@ -69,4 +83,4 @@ class Navigation extends React.Component<NavigationProps, {}> {
   }
 }
 
-export default Navigation;
+export default connect(mapStateToProps, mapDispatchToProps)(Navigation);

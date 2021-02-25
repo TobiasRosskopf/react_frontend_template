@@ -1,5 +1,6 @@
 // Import modules
 import React from "react";
+import { connect } from "react-redux";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 
 // Import styles
@@ -13,6 +14,7 @@ import Container from "react-bootstrap/Container";
 
 // Import project components
 import LoginForm from "./components/LoginForm";
+import { LoginFormState } from "./components/LoginForm";
 import SignupForm from "./components/SignupForm";
 
 // Import parts
@@ -23,6 +25,9 @@ import Footer from "./components/Footer";
 import HomePage from "./pages/HomePage";
 import UserPage from "./pages/UserPage";
 import ErrorPage from "./pages/ErrorPage";
+
+import { RootState } from "./store/store";
+import { getUser, setLoading, setError } from "./store/actions/userActions";
 
 interface AppState {
   displayedForm: string;
@@ -36,8 +41,22 @@ interface SignupDataI {
   passwordConfirm: string;
 }
 
-class App extends React.Component<{}, AppState> {
-  constructor(props: {}) {
+function mapStateToProps(state: RootState): Record<string, unknown> {
+  return {
+    user: state.user,
+  };
+}
+
+const mapDispatchToProps = {
+  // getUser: getUser,
+  // setLoading: setLoading,
+  // setError: setError,
+};
+
+type Props = ReturnType<typeof mapStateToProps> & typeof mapDispatchToProps;
+
+class App extends React.Component<Props, AppState> {
+  constructor(props: Props) {
     super(props);
     this.state = {
       displayedForm: "login",
@@ -47,14 +66,17 @@ class App extends React.Component<{}, AppState> {
   }
 
   componentDidMount(): void {
+    // this.props.setLoading();
+    // this.props.getUser();
+    // this.props.setError();
     if (this.state.loggedIn) {
       API.get("/current_user/")
         .then((res) => this.setState({ username: res.data.username }))
-        .catch((err) => alert(err));
+        .catch((err) => alert(err.message));
     }
   }
 
-  handleLogin = (e: React.FormEvent<HTMLFormElement>, data: {}): void => {
+  handleLogin = (e: React.FormEvent<HTMLFormElement>, data: LoginFormState): void => {
     e.preventDefault();
     API.post("/token/", data)
       .then((res) => {
@@ -66,7 +88,7 @@ class App extends React.Component<{}, AppState> {
           username: res.data.username,
         });
       })
-      .catch((err) => alert(err));
+      .catch((err) => alert(err.message));
   };
 
   handleSignup = (e: React.FormEvent<HTMLFormElement>, data: SignupDataI): void => {
@@ -82,7 +104,7 @@ class App extends React.Component<{}, AppState> {
             username: res.data.username,
           });
         })
-        .catch((err) => alert(err));
+        .catch((err) => alert(err.message));
     }
   };
 
@@ -140,4 +162,4 @@ class App extends React.Component<{}, AppState> {
   }
 }
 
-export default App;
+export default connect(mapStateToProps, mapDispatchToProps)(App);

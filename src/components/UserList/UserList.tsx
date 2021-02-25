@@ -18,22 +18,25 @@ interface UserI {
   email: string;
 }
 
+interface UserListProps {
+  prop?: string;
+}
+
 interface UserListState {
   users: UserI[];
 }
 
-class UserList extends React.Component<{}, UserListState> {
-  constructor(props: {}) {
+class UserList extends React.Component<UserListProps, UserListState> {
+  constructor(props: UserListProps) {
     super(props);
     this.state = {
       users: [],
     };
   }
-
   componentDidMount(): void {
     API.get("/users/")
       .then((res) => this.setState({ users: res.data }))
-      .catch((err) => alert(err));
+      .catch((err) => alert(err.message));
   }
 
   render(): JSX.Element {

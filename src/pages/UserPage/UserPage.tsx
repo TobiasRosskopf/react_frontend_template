@@ -8,7 +8,7 @@ import "./UserPage.scss";
 import Header from "../../components/Header";
 // import UserProfile from "../../components/UserProfile/UserProfile";
 
-class UserPage extends React.Component<{}, {}> {
+class UserPage extends React.Component<Record<string, unknown>> {
   render(): JSX.Element {
     return (
       <div className="UserPage">

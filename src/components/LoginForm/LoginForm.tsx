@@ -9,15 +9,15 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 
 interface LoginFormProps {
-  handleLogin: (event: React.FormEvent<HTMLFormElement>, state: LoginFromState) => void;
+  handleLogin: (event: React.FormEvent<HTMLFormElement>, state: LoginFormState) => void;
 }
 
-interface LoginFromState {
+export interface LoginFormState {
   username: string;
   password: string;
 }
 
-class LoginForm extends React.Component<LoginFormProps, LoginFromState> {
+class LoginForm extends React.Component<LoginFormProps, LoginFormState> {
   constructor(props: LoginFormProps) {
     super(props);
     this.state = {
@@ -30,7 +30,7 @@ class LoginForm extends React.Component<LoginFormProps, LoginFromState> {
     const { name, value } = e.currentTarget;
     this.setState({
       [name]: value,
-    } as Pick<LoginFromState, keyof LoginFromState>);
+    } as Pick<LoginFormState, keyof LoginFormState>);
   };
 
   render(): JSX.Element {
