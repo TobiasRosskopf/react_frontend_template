@@ -8,6 +8,7 @@ import "./App.scss";
 
 // Import API
 import API from "./api";
+import { isLoggedIn, setAuthTokens, clearAuthTokens } from "axios-jwt";
 
 // Import bootstrap components
 import Container from "react-bootstrap/Container";
@@ -31,7 +32,6 @@ import { getUser, setLoading, setError } from "./store/actions/userActions";
 
 interface AppState {
   displayedForm: string;
-  loggedIn: boolean;
   username: string;
 }
 
@@ -60,7 +60,6 @@ class App extends React.Component<Props, AppState> {
     super(props);
     this.state = {
       displayedForm: "login",
-      loggedIn: localStorage.getItem("accessToken") ? true : false,
       username: "",
     };
   }
@@ -69,9 +68,9 @@ class App extends React.Component<Props, AppState> {
     // this.props.setLoading();
     // this.props.getUser();
     // this.props.setError();
-    if (this.state.loggedIn) {
+    if (isLoggedIn()) {
       API.get("/current_user/")
-        .then((res) => this.setState({ username: res.data.username }))
+        .then((response) => this.setState({ username: response.data.username }))
         .catch((err) => alert(err.message));
     }
   }
@@ -79,13 +78,14 @@ class App extends React.Component<Props, AppState> {
   handleLogin = (e: React.FormEvent<HTMLFormElement>, data: LoginFormState): void => {
     e.preventDefault();
     API.post("/token/", data)
-      .then((res) => {
-        localStorage.setItem("accessToken", res.data.access);
-        localStorage.setItem("refreshToken", res.data.refresh);
+      .then((response) => {
+        setAuthTokens({
+          accessToken: response.data.access,
+          refreshToken: response.data.refresh,
+        });
         this.setState({
-          loggedIn: true,
           displayedForm: "",
-          username: res.data.username,
+          username: response.data.username,
         });
       })
       .catch((err) => alert(err.message));
@@ -97,11 +97,10 @@ class App extends React.Component<Props, AppState> {
       alert("Passwörter stimmen nicht überein!");
     } else {
       API.post("/register/", data)
-        .then((res) => {
+        .then((response) => {
           this.setState({
-            loggedIn: false,
             displayedForm: "",
-            username: res.data.username,
+            username: response.data.username,
           });
         })
         .catch((err) => alert(err.message));
@@ -109,9 +108,8 @@ class App extends React.Component<Props, AppState> {
   };
 
   handleLogout = (): void => {
-    localStorage.clear();
+    clearAuthTokens();
     this.setState({
-      loggedIn: false,
       username: "",
       displayedForm: "login",
     });
@@ -148,12 +146,12 @@ class App extends React.Component<Props, AppState> {
       <div className="App">
         <BrowserRouter basename="/">
           <Navigation
-            loggedIn={this.state.loggedIn}
+            loggedIn={isLoggedIn()}
             displayForm={this.displayForm}
             handleLogout={this.handleLogout}
           />
 
-          <Container className="mt-5 mb-5">{this.state.loggedIn ? routeSwitch : form}</Container>
+          <Container className="mt-5 mb-5">{isLoggedIn() ? routeSwitch : form}</Container>
 
           <Footer />
         </BrowserRouter>

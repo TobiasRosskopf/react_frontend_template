@@ -44,6 +44,7 @@ class LoginForm extends React.Component<LoginFormProps, LoginFormState> {
             <Form.Control
               type="text"
               name="username"
+              autoComplete="username"
               value={this.state.username}
               onChange={this.handleChange}
             />
@@ -54,6 +55,7 @@ class LoginForm extends React.Component<LoginFormProps, LoginFormState> {
             <Form.Control
               type="password"
               name="password"
+              autoComplete="current-password"
               value={this.state.password}
               onChange={this.handleChange}
             />

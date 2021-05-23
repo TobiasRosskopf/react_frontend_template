@@ -1,60 +1,27 @@
 // Import modules
 import axios from "axios";
+import { IAuthTokens, applyAuthTokenInterceptor } from "axios-jwt";
 
-// Helper fuction for authorization header
-function authHeader(): Record<string, unknown> {
-  const accessToken = localStorage.getItem("accessToken");
-  if (accessToken) {
-    return { Authorization: `Bearer ${accessToken}` };
-  } else {
-    return {};
-  }
-}
+// Base Url
+const BASE_URL = "http://0.0.0.0:8000";
 
 // Create API
-const API = axios.create({
-  baseURL: "http://0.0.0.0:8000",
-  headers: authHeader(),
-  timeout: 1000,
+const API = axios.create({ baseURL: BASE_URL });
+
+// Token refresh function
+async function requestRefresh(refreshToken: string): Promise<IAuthTokens | string> {
+  const response = await axios.post(`${BASE_URL}/token/refresh/`, { token: refreshToken });
+  return {
+    accessToken: response.data.access_token,
+    refreshToken: response.data.refresh_token,
+  };
+}
+
+// Add interceptor with configuration
+applyAuthTokenInterceptor(API, {
+  requestRefresh,
+  header: "Authorization",
+  headerPrefix: "Bearer ",
 });
-
-// API.interceptors.response.use(
-//   (response) => {
-//     return response;
-//   },
-//   (err) => {
-//     console.log(err.message);
-//     return new Promise((resolve, reject) => {
-//       const originalReq = err.config;
-//       if (err.response.status === 401 && err.config && !err.config.__isRetryRequest) {
-//         originalReq._retry = true;
-
-//         const res = fetch("http://0.0.0.0:8000/token/refresh/", {
-//           method: "POST",
-//           mode: "cors",
-//           cache: "no-cache",
-//           credentials: "same-origin",
-//           redirect: "follow",
-//           referrer: "no-referrer",
-//           body: JSON.stringify({
-//             refresh: localStorage.getItem("refreshToken"),
-//           }),
-//         })
-//           .then((res) => res.json())
-//           .then((res) => {
-//             console.log(res);
-//             localStorage.setItem("accessToken", res.access);
-//             originalReq.headers["Authorization"] = `Bearer ${res.access}`;
-
-//             return axios(originalReq);
-//           });
-
-//         resolve(res);
-//       }
-
-//       return Promise.reject(err);
-//     });
-//   }
-// );
 
 export default API;

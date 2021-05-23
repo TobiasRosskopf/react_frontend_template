@@ -45,6 +45,7 @@ class SignupForm extends React.Component<SignupFormProps, SignupFormState> {
             <Form.Control
               type="text"
               name="username"
+              autoComplete="username"
               value={this.state.username}
               onChange={this.handleChange}
             />
@@ -55,6 +56,7 @@ class SignupForm extends React.Component<SignupFormProps, SignupFormState> {
             <Form.Control
               type="password"
               name="password"
+              autoComplete="new-password"
               value={this.state.password}
               onChange={this.handleChange}
             />
@@ -65,6 +67,7 @@ class SignupForm extends React.Component<SignupFormProps, SignupFormState> {
             <Form.Control
               type="password"
               name="passwordConfirm"
+              autoComplete="new-password"
               value={this.state.passwordConfirm}
               onChange={this.handleChange}
             />

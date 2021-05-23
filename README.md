@@ -54,6 +54,10 @@ https://reactjs.de/artikel/react-typescript/
 
 https://create-react-app.dev/docs/deployment/
 
+### React-Redux
+
+https://levelup.gitconnected.com/react-redux-hooks-useselector-and-usedispatch-f7d8c7f75cdd
+
 ### Bootstrap
 
 https://getbootstrap.com/docs/5.0/getting-started/introduction/
@@ -69,6 +73,8 @@ https://www.npmjs.com/package/node-sass
 ### Axios
 
 https://www.npmjs.com/package/axios
+
+https://www.npmjs.com/package/axios-jwt
 
 ### Jest (Test Suite)
 
