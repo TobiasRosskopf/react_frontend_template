@@ -28,7 +28,7 @@ import UserPage from "./pages/UserPage";
 import ErrorPage from "./pages/ErrorPage";
 
 import { RootState } from "./store/store";
-import { getUser, setLoading, setError } from "./store/actions/userActions";
+// import { getUser, setLoading, setError } from "./store/actions/userActions";
 
 interface AppState {
   displayedForm: string;
@@ -85,10 +85,10 @@ class App extends React.Component<Props, AppState> {
         });
         this.setState({
           displayedForm: "",
-          username: response.data.username,
+          // username: response.data.username,
         });
       })
-      .catch((err) => alert(err.message));
+      .catch((err) => console.log(err.message));
   };
 
   handleSignup = (e: React.FormEvent<HTMLFormElement>, data: SignupDataI): void => {
@@ -99,11 +99,10 @@ class App extends React.Component<Props, AppState> {
       API.post("/register/", data)
         .then((response) => {
           this.setState({
-            displayedForm: "",
-            username: response.data.username,
+            displayedForm: "login",
           });
         })
-        .catch((err) => alert(err.message));
+        .catch((err) => console.log(err.message));
     }
   };
 

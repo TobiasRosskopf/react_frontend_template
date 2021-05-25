@@ -1,6 +1,6 @@
 // Import modules
 import React from "react";
-import { connect } from "react-redux";
+import { connect, ConnectedProps } from "react-redux";
 
 // Import styles
 import "./Navigation.scss";
@@ -15,26 +15,34 @@ import DropdownButton from "react-bootstrap/DropdownButton";
 import { RootState } from "../../store/store";
 import { UserState } from "store/types";
 
-interface OwnProps {
+import { getUser } from "../../store/actions/userActions";
+// import { getUser, setLoading, setError } from "../../store/actions/userActions";
+
+const mapState = (state: RootState): { user: UserState } => ({
+  user: state.user,
+});
+
+const mapDispatch = {
+  getUser: getUser,
+};
+
+const connector = connect(mapState, mapDispatch);
+type PropsFromRedux = ConnectedProps<typeof connector>;
+
+interface Props extends PropsFromRedux {
   loggedIn: boolean;
   displayForm: (form: string) => void;
   handleLogout: (event: React.MouseEvent<HTMLLIElement>) => void;
 }
 
-function mapStateToProps(state: RootState): { user: UserState } {
-  return {
-    user: state.user,
-  };
-}
-
-const mapDispatchToProps = {};
-
-type Props = ReturnType<typeof mapStateToProps> & typeof mapDispatchToProps & OwnProps;
-
 class Navigation extends React.Component<Props> {
   constructor(props: Props) {
     super(props);
     this.state = {};
+  }
+
+  componentDidMount(): void {
+    this.props.getUser();
   }
 
   render(): JSX.Element {
@@ -83,4 +91,4 @@ class Navigation extends React.Component<Props> {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Navigation);
+export default connector(Navigation);

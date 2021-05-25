@@ -6,32 +6,32 @@ import API from "../../api";
 
 export function getUser(): ThunkAction<void, RootState, null, UserAction> {
   return function (dispatch): void {
+    dispatch({ type: SET_LOADING });
     API.get("/current_user/")
-      .then((res) => {
+      .then((response) => {
         dispatch({
           type: GET_USER,
-          payload: res.data,
+          payload: response.data,
         });
       })
-      .catch((err) => {
-        // console.log(err.message);
+      .catch((error) => {
         dispatch({
           type: SET_ERROR,
-          payload: err.message,
+          payload: error.message,
         });
       });
   };
 }
 
-export function setLoading(): UserAction {
-  return {
-    type: SET_LOADING,
-  };
-}
+// export function setLoading(): UserAction {
+//   return {
+//     type: SET_LOADING,
+//   };
+// }
 
-export function setError(): UserAction {
-  return {
-    type: SET_ERROR,
-    payload: "",
-  };
-}
+// export function setError(): UserAction {
+//   return {
+//     type: SET_ERROR,
+//     payload: "",
+//   };
+// }
