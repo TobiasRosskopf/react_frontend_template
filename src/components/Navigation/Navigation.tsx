@@ -12,23 +12,25 @@ import Button from "react-bootstrap/Button";
 import Dropdown from "react-bootstrap/Dropdown";
 import DropdownButton from "react-bootstrap/DropdownButton";
 
+// Import redux store
 import { RootState } from "../../store/store";
 import { UserState } from "store/types";
 
-import { getUser } from "../../store/actions/userActions";
-// import { getUser, setLoading, setError } from "../../store/actions/userActions";
-
+// State from redux store to Props
 const mapState = (state: RootState): { user: UserState } => ({
   user: state.user,
 });
 
+// Actions from redux store to Props
 const mapDispatch = {
-  getUser: getUser,
+  // no actions yet
 };
 
+// Connect Props
 const connector = connect(mapState, mapDispatch);
 type PropsFromRedux = ConnectedProps<typeof connector>;
 
+// Extend with own Props
 interface Props extends PropsFromRedux {
   loggedIn: boolean;
   displayForm: (form: string) => void;
@@ -39,10 +41,6 @@ class Navigation extends React.Component<Props> {
   constructor(props: Props) {
     super(props);
     this.state = {};
-  }
-
-  componentDidMount(): void {
-    this.props.getUser();
   }
 
   render(): JSX.Element {
@@ -91,4 +89,5 @@ class Navigation extends React.Component<Props> {
   }
 }
 
+// Connect component
 export default connector(Navigation);

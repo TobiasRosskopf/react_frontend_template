@@ -1,11 +1,14 @@
-import { UserState, UserAction, GET_USER, SET_LOADING, SET_ERROR } from "../types";
+// Import types
+import { UserState, UserAction, GET_USER, CLEAR_USER, SET_LOADING, SET_ERROR } from "../types";
 
+// Initialize state
 const initialState: UserState = {
   data: null,
   loading: false,
   error: "",
 };
 
+// User Reducer
 export default (state = initialState, action: UserAction): UserState => {
   switch (action.type) {
     case GET_USER:
@@ -13,6 +16,12 @@ export default (state = initialState, action: UserAction): UserState => {
         data: action.payload,
         loading: false,
         error: "",
+      };
+
+    case CLEAR_USER:
+      return {
+        ...state,
+        data: null,
       };
 
     case SET_LOADING:

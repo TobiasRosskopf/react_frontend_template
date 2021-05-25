@@ -1,9 +1,14 @@
+// Import modules
 import { ThunkAction } from "redux-thunk";
-import { RootState } from "../store";
-import { UserAction, GET_USER, SET_LOADING, SET_ERROR } from "../types";
 
+// Import store and types
+import { RootState } from "../store";
+import { UserAction, GET_USER, CLEAR_USER, SET_LOADING, SET_ERROR } from "../types";
+
+// Import axios API
 import API from "../../api";
 
+// Get User Action
 export function getUser(): ThunkAction<void, RootState, null, UserAction> {
   return function (dispatch): void {
     dispatch({ type: SET_LOADING });
@@ -23,15 +28,11 @@ export function getUser(): ThunkAction<void, RootState, null, UserAction> {
   };
 }
 
-// export function setLoading(): UserAction {
-//   return {
-//     type: SET_LOADING,
-//   };
-// }
-
-// export function setError(): UserAction {
-//   return {
-//     type: SET_ERROR,
-//     payload: "",
-//   };
-// }
+// Clear User Action
+export function clearUser(): ThunkAction<void, RootState, null, UserAction> {
+  return function (dispatch): void {
+    dispatch({
+      type: CLEAR_USER,
+    });
+  };
+}

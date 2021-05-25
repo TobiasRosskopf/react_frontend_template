@@ -1,4 +1,6 @@
+// Declare action types
 export const GET_USER = "GET_USER";
+export const CLEAR_USER = "CLEAR_USER";
 export const SET_LOADING = "SET_LOADING";
 export const SET_ERROR = "SET_ERROR";
 
@@ -26,6 +28,10 @@ interface GetUserAction {
   payload: UserData;
 }
 
+interface ClearUserAction {
+  type: typeof CLEAR_USER;
+}
+
 interface SetLoadingAction {
   type: typeof SET_LOADING;
 }
@@ -35,4 +41,4 @@ interface SetErrorAction {
   payload: string;
 }
 
-export type UserAction = GetUserAction | SetLoadingAction | SetErrorAction;
+export type UserAction = GetUserAction | ClearUserAction | SetLoadingAction | SetErrorAction;

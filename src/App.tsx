@@ -1,6 +1,6 @@
 // Import modules
 import React from "react";
-import { connect } from "react-redux";
+import { connect, ConnectedProps } from "react-redux";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 
 // Import styles
@@ -27,12 +27,12 @@ import HomePage from "./pages/HomePage";
 import UserPage from "./pages/UserPage";
 import ErrorPage from "./pages/ErrorPage";
 
+// Import redux store and actions
 import { RootState } from "./store/store";
-// import { getUser, setLoading, setError } from "./store/actions/userActions";
+import { getUser, clearUser } from "./store/actions/userActions";
 
 interface AppState {
   displayedForm: string;
-  username: string;
 }
 
 interface SignupDataI {
@@ -41,37 +41,32 @@ interface SignupDataI {
   passwordConfirm: string;
 }
 
-function mapStateToProps(state: RootState): Record<string, unknown> {
-  return {
-    user: state.user,
-  };
-}
+// State from redux store to Props
+const mapState = (state: RootState): Record<string, unknown> => ({
+  user: state.user,
+});
 
-const mapDispatchToProps = {
-  // getUser: getUser,
-  // setLoading: setLoading,
-  // setError: setError,
+// Actions from redux store to Props
+const mapDispatch = {
+  getUser: getUser,
+  clearUser: clearUser,
 };
 
-type Props = ReturnType<typeof mapStateToProps> & typeof mapDispatchToProps;
+// Connect Props
+const connector = connect(mapState, mapDispatch);
+type Props = ConnectedProps<typeof connector>;
 
 class App extends React.Component<Props, AppState> {
   constructor(props: Props) {
     super(props);
     this.state = {
       displayedForm: "login",
-      username: "",
     };
   }
 
   componentDidMount(): void {
-    // this.props.setLoading();
-    // this.props.getUser();
-    // this.props.setError();
     if (isLoggedIn()) {
-      API.get("/current_user/")
-        .then((response) => this.setState({ username: response.data.username }))
-        .catch((err) => alert(err.message));
+      this.props.getUser();
     }
   }
 
@@ -85,10 +80,10 @@ class App extends React.Component<Props, AppState> {
         });
         this.setState({
           displayedForm: "",
-          // username: response.data.username,
         });
+        this.props.getUser();
       })
-      .catch((err) => console.log(err.message));
+      .catch((error) => console.log(error.message));
   };
 
   handleSignup = (e: React.FormEvent<HTMLFormElement>, data: SignupDataI): void => {
@@ -101,17 +96,18 @@ class App extends React.Component<Props, AppState> {
           this.setState({
             displayedForm: "login",
           });
+          alert("Erfolreich registriert!");
         })
-        .catch((err) => console.log(err.message));
+        .catch((error) => alert(error.response.data.username));
     }
   };
 
   handleLogout = (): void => {
     clearAuthTokens();
     this.setState({
-      username: "",
       displayedForm: "login",
     });
+    this.props.clearUser();
   };
 
   displayForm = (form: string): void => {
@@ -159,4 +155,5 @@ class App extends React.Component<Props, AppState> {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+// Connect component
+export default connector(App);
