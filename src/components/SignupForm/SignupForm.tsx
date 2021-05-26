@@ -4,7 +4,7 @@ import React from "react";
 // Import styles
 import "./SignupForm.scss";
 
-// Import components
+// Import Bootstrap components
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 

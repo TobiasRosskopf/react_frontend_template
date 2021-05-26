@@ -6,7 +6,7 @@ import "./UserPage.scss";
 
 // Import parts
 import Header from "../../components/Header";
-// import UserProfile from "../../components/UserProfile/UserProfile";
+import UserProfile from "../../components/UserProfile/UserProfile";
 
 class UserPage extends React.Component<Record<string, unknown>> {
   render(): JSX.Element {
@@ -14,9 +14,7 @@ class UserPage extends React.Component<Record<string, unknown>> {
       <div className="UserPage">
         <Header />
         <h1>Benutzerprofil:</h1>
-        {/* <h2>Benutzername: {localStorage.getItem("username")}</h2>
-        <h2>E-Mail: {localStorage.getItem("email")}</h2> */}
-        {/* <UserProfile /> */}
+        <UserProfile />
       </div>
     );
   }
