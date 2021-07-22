@@ -58,6 +58,8 @@ https://create-react-app.dev/docs/deployment/
 
 https://levelup.gitconnected.com/react-redux-hooks-useselector-and-usedispatch-f7d8c7f75cdd
 
+https://dev.to/markusclaus/fetching-data-from-an-api-using-reactredux-55ao
+
 ### Bootstrap
 
 https://getbootstrap.com/docs/5.0/getting-started/introduction/
